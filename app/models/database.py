@@ -1,5 +1,6 @@
 from sqlmodel import Field, Relationship, SQLModel
 
+
 class Document(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
     filename: str
@@ -7,6 +8,7 @@ class Document(SQLModel, table=True):
     status: str = "processing"
 
     pages: list["DocumentPage"] = Relationship(back_populates="document")
+
 
 class DocumentPage(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
