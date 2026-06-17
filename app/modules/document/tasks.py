@@ -7,9 +7,10 @@ from app.models.engine import engine
 from app.modules.document.methods import (
     extract_document_with_mistral,
     extract_keypoints,
-    insert_page_to_chromadb
+    insert_page_to_chromadb,
 )
 from app.worker import celery_app
+
 
 @celery_app.task(name="app.modules.document.tasks.extract_document")
 def extract_document(
@@ -39,7 +40,9 @@ def extract_document(
             )
             session.add(document_page)
             pages.append(document_page)
-            insert_page_to_chromadb(document_id, filename, page.index, page.markdown, keypoints)
+            insert_page_to_chromadb(
+                document_id, filename, page.index, page.markdown, keypoints
+            )
 
         document.status = "completed"
         session.add(document)
