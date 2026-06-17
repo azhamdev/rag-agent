@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     openai_api_key: str | None = None
     openai_keypoint_model: str = "gpt-4.1-mini"
 
+    openrouter_api_key: str | None = None
+
     chroma_db_path: str = "chroma_db"
     chroma_collection_name: str = "document_pages"
 

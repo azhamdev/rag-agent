@@ -4,7 +4,10 @@ from app.core.settings import settings
 
 
 def get_openai_client() -> OpenAI:
-    if settings.openai_api_key is None:
-        raise RuntimeError("OPENAI_API_KEY is required")
+    if settings.openrouter_api_key is None:
+        raise RuntimeError("OPENROUTER_API_KEY is required")
 
-    return OpenAI(api_key=settings.openai_api_key)
+    return OpenAI(
+        api_key=settings.openrouter_api_key,
+        base_url="https://openrouter.ai/api/v1",
+    )
